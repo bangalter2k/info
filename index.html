@@ -242,65 +242,9 @@
 
 
 
-<footer style="background: linear-gradient(to right, #007BFF, #00BFFF); color: #fff; padding: 30px 20px; text-align: center; margin-top: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -4px 12px rgba(0,0,0,0.2);">
-  <h3 style="margin-bottom: 15px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Loja iPhone Seguro</h3>
-  <p style="margin: 5px 0; font-weight: bold;">CNPJ: 62.060.965/0001-27</p>
-  <p style="margin: 5px 0;">Endereço: R. Nossa Sra. Mãe dos Homens, 938 - Vila Progresso, Guarulhos - SP</p>
-  <p style="margin: 5px 0;">Quem Somos: Somos uma loja especializada na venda de iPhones de última geração, oferecendo produtos originais e suporte de qualidade para todos os clientes.</p>
-  <p style="margin-top: 15px; font-size: 0.9em;">&copy; 2025 Loja de iPhones. Todos os direitos reservados.</p>
-</footer>
 
-<script>
-let cart = [];
 
-function addToCart(name, price){
-  let item = cart.find(i => i.name===name);
-  if(item) item.quantity++;
-  else cart.push({name, price, quantity:1});
-  updateCartBtn();
-}
 
-function updateCartBtn(){
-  document.querySelector('.cart-btn').innerText = 'Carrinho (' + cart.reduce((a,b)=>a+b.quantity,0) + ')';
-}
-
-function openCart(){
-  let container = document.getElementById('cartItems');
-  container.innerHTML='';
-  let total = 0;
-  cart.forEach(item=>{
-    let div = document.createElement('div');
-    div.className='cart-item';
-    div.innerHTML=`<p>${item.name} x ${item.quantity}</p><p>R$ ${(item.price*item.quantity).toLocaleString()}</p>`;
-    container.appendChild(div);
-    total += item.price*item.quantity;
-  });
-  document.getElementById('cartTotal').innerText='Total: R$ '+total.toLocaleString();
-  document.getElementById('cartModal').style.display='flex';
-}
-
-function closeCart(){ document.getElementById('cartModal').style.display='none'; }
-
-function checkout(){
-  if(cart.length===0){ alert('Carrinho vazio!'); return; }
-  alert('Compra finalizada! Total: R$ ' + cart.reduce((a,b)=>a+b.price*b.quantity,0).toLocaleString());
-  cart=[]; updateCartBtn(); closeCart();
-}
-
-window.onclick=function(event){
-  if(event.target==document.getElementById('cartModal')) closeCart();
-}
-const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
-  hamburger.addEventListener('click', () => {
-    if (mobileMenu.style.display === 'flex') {
-      mobileMenu.style.display = 'none';
-    } else {
-      mobileMenu.style.display = 'flex';
-    }
-  });
-</script>
 
 </body>
 </html>
